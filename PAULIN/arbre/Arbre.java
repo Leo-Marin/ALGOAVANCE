@@ -59,7 +59,44 @@ class Arbre {
         return arbreFinal;
     }
 
-    public static void main(String[] args) {
+
+    public Arbre symetrise2(){
+        Arbre sym =  new Arbre();
+        if(!estVide()){
+            sym.val = val;
+            sym.filsD = this.filsG.symetrise2();
+            sym.filsG = this.filsD.symetrise2();
+        }
+        return sym;
+    }
+
+    public boolean parcours(Liste l){
+        if (estVide()){
+            return l.estVide();
+        }
+        else {
+            return !l.estVide() && (val == l.val) && (filsD.parcours(l.suiv) || filsG.parcours(l.suiv));
+        }
+    }
+
+    public int traverse(){
+        if (estVide()){
+            return 0;
+        }
+        else{
+            int compteG = this.filsG.traverse();
+            int compteD = this.filsD.traverse();
+            if (compteD>compteG){
+                return compteD + 1;
+            }
+            else{
+                return compteG + 1;
+            }
+        }
+
+
+
+        public static void main(String[] args) {
         Arbre arbre1VideG =new Arbre();
         Arbre arbre1VideD =new Arbre();
         Arbre arbre2VideG =new Arbre();
