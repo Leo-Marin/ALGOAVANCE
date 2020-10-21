@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Arbre {
     private int val ;
     private Arbre filsG ;
