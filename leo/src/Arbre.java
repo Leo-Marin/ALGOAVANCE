@@ -30,7 +30,7 @@ public class Arbre {
         return toStringV2aux ( " " ) ;
     }
 
-    public Arbre symetrise(){
+    /*public Arbre symetrise(){
         if(this.estVide()){ return new Arbre(); }
         if(filsG.estVide() && filsD.estVide()){
             Arbre feuille = new Arbre();
@@ -47,6 +47,30 @@ public class Arbre {
            arbrefinal.filsD =filsG.symetrise();
            return arbrefinal;
         }
+    }*/
+    public Arbre symetrise(){
+        Arbre sym =  new Arbre();
+        if(!estVide()){
+            sym.val = val;
+            sym.filsD = this.filsG.symetrise();
+            sym.filsG = this.filsD.symetrise();
+        }
+        return sym;
+    }
+
+    public boolean parcours(Liste l){
+        if (estVide()){
+            return l.estVide();
+        }
+        else {
+            return !l.estVide() && (val == l.val) && (filsD.parcours(l.suiv) || filsG.parcours(l.suiv));
+        }
+    }
+
+    public int traverse() {
+        if (estVide()) {
+        }
+        return 5;
     }
     public static void main(String[] args) {
         Arbre arbre1VideG =new Arbre();
